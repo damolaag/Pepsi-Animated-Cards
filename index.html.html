@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>body</title>
+</head>
+<body>
+
+<style type="text/css">
+    html, body {
+        margin: 0 0 0 0;
+    }
+
+    .box {
+        padding: 0;
+        display: block;
+        position: relative;
+        width: 75px;
+        height: 100px;
+        float: left;
+        margin: 7px;
+    }
+
+    .facet {
+        position: absolute;
+        width: 75px;
+        height: 100px;
+        top: 0;
+        left: 0;
+        display: block;
+        overflow: hidden;
+        box-shadow: 2px 2px 5px rgba(72, 72, 72, 0.5);
+    }
+
+    .start_screen {
+        position: absolute;
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+        cursor: auto;
+        background:#ffc107;
+    }
+
+    .start_screen_inn {
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    #pars {
+        color: #0169ab;
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: -.1px;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .sprite img {
+        margin: 5px 10px 0 0;
+    }
+
+    .start_btn {
+        width: 250px;
+        padding: 14px 5px 16px 5px;
+        box-sizing: border-box;
+        text-align: center;
+        font-size: 18px;
+        border-radius: 5px;
+        line-height: 18px;
+        background: none;
+        color: #ffffff;
+        border: 2px solid #ffffff;
+        -webkit-transition: 0.5s ease-in-out;
+        transition: 0.5s ease-in-out;
+        cursor: pointer;
+        user-select: none;
+        position: relative;
+        margin: 50px auto 0 auto;
+    }
+
+    .start_btn:hover {
+        background: #ffffff;
+        color: #0069aa;
+    }
+
+    .end_screen {
+        display: none;
+        opacity: 0;
+        position: absolute;
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 105, 170, 0.9);
+    }
+
+    .end_screen_inn {
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    .endHeader {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .link_btn {
+        cursor: pointer;
+        outline: none;
+        width: 250px;
+        padding: 14px 5px 16px 5px;
+        border: 2px solid #ee3d42;
+        border-radius: 5px;
+        color: #ffffff;
+        display: block;
+        text-align: center;
+        font-size: 22px;
+        font-weight: normal;
+        overflow: hidden;
+        position: relative;
+        text-decoration: none;
+        text-shadow: 0 0 0 rgb(255, 255, 255), 0 55px 0 rgba(26, 2, 64, 0);
+        color: rgba(0, 0, 0, 0) !important;
+        -webkit-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
+        background-color: rgba(238, 61, 66, 1);
+    }
+
+    .link_btn:hover {
+        text-shadow: 0 -55px 0 rgba(24, 188, 19, 0), 0 0 0 rgb(255, 255, 255);
+        background-color: rgb(238, 61, 66);
+    }
+
+    .repeat_btn {
+        text-align: center;
+        width: 45px;
+        height: 45px;
+        position: relative;
+        margin: 50px auto 0 auto;
+    }
+
+    .repeat_inn img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .repeat_btn:hover .repeat_inn img {
+        -webkit-transform: rotate(-360deg);
+        transform: rotate(-360deg);
+        -webkit-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
+    }
+
+    .contgame {
+        width: 300px;
+        height: 600px;
+        position: relative;
+        font-family: "Helvetica Neue", Helvetica, Arial, "sans-serif";
+        font-size: 12px;
+        font-weight: bold;
+        background: #fcfcfc;
+        background: -moz-linear-gradient(top, #fcfcfc 0%, #d5d5d5 100%);
+        background: -webkit-linear-gradient(top, #fcfcfc 0%, #d5d5d5 100%);
+        background: linear-gradient(to bottom, #fcfcfc 0%, #d5d5d5 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#d5d5d5', GradientType=0);
+        overflow: hidden;
+        border: solid 1px #4d8dbe;
+        box-sizing: border-box;
+    }
+
+    .front {
+        background-image: url('images/cardBack1.png');
+        background-size: cover;
+        background-position: center center;
+    }
+
+    #canvas-game {
+        position: relative;
+        margin: 0 auto;
+        width: 267px;
+    }
+
+    .back {
+        box-shadow: 2px 2px 5px rgba(72, 72, 72, 0.5);
+    }
+
+    .black {
+        background-image: url('images/card1.jpg');
+        background-size: cover;
+        background-position: center center;
+    }
+
+    .pink {
+        background-image: url('images/card2.jpg');
+        background-size: cover;
+        background-position: center center;
+    }
+
+    .blue {
+        background-image: url('images/card3.jpg');
+        background-size: cover;
+        background-position: center center;
+    }
+
+    .green {
+        background-image: url('images/card4.jpg');
+        background-size: cover;
+        background-position: center center;
+    }
+
+    .red {
+        background-image: url('images/card5.jpg');
+        background-size: cover;
+        background-position: center center;
+    }
+
+    .yellow {
+        background-image: url('images/card6.jpg');
+        background-size: cover;
+        background-position: center center;
+    }
+
+    .flips {
+        opacity: 0;
+    }
+
+    .flit .flips {
+        opacity: 1;
+        z-index: 1;
+    }
+
+    .card.flip.flit {
+        transform: matrix(1, 0, 0, 1, 0, 0) !important;
+    }
+
+    h1 {
+        font-size: 12px;
+    }
+</style>
+
+<div id="container" style="position: absolute;left: 0;top: 0;width: 300px;height: 600px;">
+    <div class="contgame">
+        <div class="start_screen">
+            <div class="start_screen_inn">
+                <div class="introHeader"><img src="images/introHeader.png"></div>
+                <div class="start_btn">Play</div>
+            </div>
+        </div>
+        <div class="end_screen">
+            <div class="end_screen_inn">
+                <div class="endHeader"><img src="images/endHeader.png"></div>
+                <div id="link_btn" class="link_btn">Завантажуй тут</div>
+                <div class="repeat_btn">
+                    <div class="repeat_inn"><img src="images/repeat.png"></div>
+                </div>
+            </div>
+        </div>
+        <div class="head"><a href="dochase.com"><img src="images/txt.png"></a></div>
+        <div id="pars">
+            <span class="sprite"><img src="images/sprite.png"></span>
+            <span id="pars_score">0</span><span id="pars_end">/6 <span>Пар</span></span>
+        </div>
+        <div id="canvas-game">
+        </div>
+    </div>
+</div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js'></script>
+<script src="js/game.js"></script>
+<script type="text/javascript" src=js/body.js></script>
+
+</body>
+</html>
